@@ -8,6 +8,35 @@ struct details {
     int priority;
 };
 
+int addTask(struct details tasks[], int tk) {
+    int day, month, year;
+    printf("\n<<<<<<<<<<<<<<add task>>>>>>>>>>>>>>>\n");
+    printf("\nTask title: ");
+    scanf(" %[^\n]", tasks[tk].title);
+    printf("\nTask description: ");
+    scanf(" %[^\n]", tasks[tk].description);
+
+    while (1) {
+        printf("\nTask date in this format (MM-DD-YYYY): ");
+        scanf("%d-%d-%d", &month, &day, &year);
+        if (verify_day(day, month, year)) {
+            sprintf(tasks[tk].date, "%02d-%02d-%04d", month, day, year);
+            break;
+        } else {
+            printf("Invalid date. Please enter a valid date in MM-DD-YYYY format.\n");
+        }
+    }
+
+    printf("\nTask priority (1 for high, 0 for low): ");
+    scanf("%d", &tasks[tk].priority);
+    if (tasks[tk].priority != 1 && tasks[tk].priority != 0) {
+        printf("Invalid number. Please enter a valid number.\n");
+    }
+
+    printf("\n<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>\n");
+    return tk + 1;
+}
+
 int main() {
     struct details tasks[100];
     int tk = 0;
