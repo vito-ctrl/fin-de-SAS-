@@ -93,6 +93,23 @@ void editTask(struct details tasks[], int taskCount) {
             printf("Invalid task number.\n"); 
         }
 }
+int deleteTask(struct details tasks[], int tk) {
+    int taskNumber;
+    printf("\n<<<<<<<<<<<<<<delete task>>>>>>>>>>>>>>>\n");
+    printf("Enter the task number to delete: ");
+    scanf("%d", &taskNumber);
+    if (taskNumber > 0 && taskNumber <= tk) {
+        taskNumber--; // Adjust for zero-based index
+        for (int i = taskNumber; i < tk - 1; i++) {
+            tasks[i] = tasks[i + 1];
+        }
+        tk--; // Decrement the number of tasks
+        printf("Task %d deleted.\n", taskNumber + 1);
+    } else {
+        printf("Invalid task number.\n");
+    }
+    return tk; // Return the updated number of tasks
+}
 
 int main() {
     struct details tasks[100];
