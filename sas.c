@@ -36,6 +36,7 @@ int addTask(struct details tasks[], int tk) {
     printf("\n<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>\n");
     return tk + 1;
 }
+
 void viewTasks(struct details tasks[], int taskCount) { 
     printf("\n<<<<<<<<<<<<<<view tasks>>>>>>>>>>>>>>>\n"); 
     for (int i = 0; i < taskCount; i++) { 
@@ -45,6 +46,27 @@ void viewTasks(struct details tasks[], int taskCount) {
         printf("Date: %s\n", tasks[i].date); 
         printf("Priority: %s\n", tasks[i].priority ? "High" : "Low"); 
         printf("\n"); 
+        }
+}
+
+void editTask(struct details tasks[], int taskCount) { 
+    int taskNumber; 
+    printf("\n<<<<<<<<<<<<<<edit task>>>>>>>>>>>>>>>\n"); 
+    printf("Enter the task number to edit: "); 
+    scanf("%d", &taskNumber); 
+    if (taskNumber > 0 && taskNumber <= taskCount) { 
+        taskNumber--; // Adjust for zero-based index 
+        printf("Editing Task %d:\n", taskNumber + 1); 
+        printf("New title: "); 
+        scanf(" %[^\n]", tasks[taskNumber].title); 
+        printf("New description: "); 
+        scanf(" %[^\n]", tasks[taskNumber].description); 
+        printf("New date (MM-DD-YYYY): "); 
+        scanf(" %[^\n]", tasks[taskNumber].date); 
+        printf("New priority (1 for high, 0 for low): "); 
+        scanf("%d", &tasks[taskNumber].priority); 
+        } else { 
+            printf("Invalid task number.\n"); 
         }
 }
 
