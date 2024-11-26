@@ -8,6 +8,30 @@ struct details {
     int priority;
 };
 
+int verify_day(int day, int month, int year) {
+    if (year < 1000 || year > 9999) 
+        return 0;
+    if (month < 1 || month > 12) 
+        return 0;
+    if (day < 1 || day > 31) 
+        return 0;
+    if (month == 2) {
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+            if (day > 29)
+                return 0;
+        } else {
+            if (day > 28)
+                return 0;
+        }
+    }
+    if (month == 4 || month == 6 || month == 9 || month == 11) {
+        if (day > 30)
+            return 0;
+    }
+    return 1;
+}
+
+
 int addTask(struct details tasks[], int tk) {
     int day, month, year;
     printf("\n<<<<<<<<<<<<<<add task>>>>>>>>>>>>>>>\n");
@@ -55,7 +79,7 @@ void editTask(struct details tasks[], int taskCount) {
     printf("Enter the task number to edit: "); 
     scanf("%d", &taskNumber); 
     if (taskNumber > 0 && taskNumber <= taskCount) { 
-        taskNumber--; // Adjust for zero-based index 
+        taskNumber--;
         printf("Editing Task %d:\n", taskNumber + 1); 
         printf("New title: "); 
         scanf(" %[^\n]", tasks[taskNumber].title); 
