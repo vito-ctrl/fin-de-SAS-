@@ -36,6 +36,17 @@ int addTask(struct details tasks[], int tk) {
     printf("\n<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>\n");
     return tk + 1;
 }
+void viewTasks(struct details tasks[], int taskCount) { 
+    printf("\n<<<<<<<<<<<<<<view tasks>>>>>>>>>>>>>>>\n"); 
+    for (int i = 0; i < taskCount; i++) { 
+        printf("Task %d:\n", i + 1); 
+        printf("Title: %s\n", tasks[i].title); 
+        printf("Description: %s\n", tasks[i].description); 
+        printf("Date: %s\n", tasks[i].date); 
+        printf("Priority: %s\n", tasks[i].priority ? "High" : "Low"); 
+        printf("\n"); 
+        }
+}
 
 int main() {
     struct details tasks[100];
