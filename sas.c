@@ -111,6 +111,20 @@ int deleteTask(struct details tasks[], int tk) {
     return tk; // Return the updated number of tasks
 }
 
+void filterByPriority(struct details tasks[], int tk, int priority) {
+    printf("\n<<<<<<<<<<<<<<filter tasks>>>>>>>>>>>>>>>\n");
+    for (int i = 0; i < tk; i++) {
+        if (tasks[i].priority == priority) {
+            printf("Task %d:\n", i + 1);
+            printf("Title: %s\n", tasks[i].title);
+            printf("Description: %s\n", tasks[i].description);
+            printf("Date: %s\n", tasks[i].date);
+            printf("Priority: %s\n", tasks[i].priority ? "High" : "Low");
+            printf("\n");
+        }
+    }
+}
+
 int main() {
     struct details tasks[100];
     int tk = 0;
